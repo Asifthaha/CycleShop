@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E702F078278DF7D000434DF3 /* RatingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E702F077278DF7D000434DF3 /* RatingsView.swift */; };
+		E702F07A278E10CD00434DF3 /* CartFavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E702F079278E10CD00434DF3 /* CartFavouriteView.swift */; };
 		E73A4B742788443200248287 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A4B732788443200248287 /* NavigationBarView.swift */; };
 		E73A4B762788468900248287 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A4B752788468900248287 /* LogoView.swift */; };
 		E73A4B7C27887A0600248287 /* CodableBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A4B7B27887A0600248287 /* CodableBundleExtension.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E702F077278DF7D000434DF3 /* RatingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingsView.swift; sourceTree = "<group>"; };
+		E702F079278E10CD00434DF3 /* CartFavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartFavouriteView.swift; sourceTree = "<group>"; };
 		E73A4B732788443200248287 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		E73A4B752788468900248287 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		E73A4B7B27887A0600248287 /* CodableBundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableBundleExtension.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 				E77775A9278D7FBB00CEAD4D /* NavigationDetailView.swift */,
 				E77775AB278D8BAB00CEAD4D /* HeaderDetailView.swift */,
 				E77775AD278D905C00CEAD4D /* TopPartDetailView.swift */,
+				E702F077278DF7D000434DF3 /* RatingsView.swift */,
+				E702F079278E10CD00434DF3 /* CartFavouriteView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -279,12 +285,14 @@
 				E79FD376278B2E7400C42389 /* AccessoryModel.swift in Sources */,
 				E73A4B762788468900248287 /* LogoView.swift in Sources */,
 				E7476893278C6ADB00C9C346 /* ProductItemView.swift in Sources */,
+				E702F078278DF7D000434DF3 /* RatingsView.swift in Sources */,
 				E79FD378278B326B00C42389 /* AccessoryItemView.swift in Sources */,
 				E77775AE278D905C00CEAD4D /* TopPartDetailView.swift in Sources */,
 				E78418BB278319D70089421B /* FooterView.swift in Sources */,
 				E7496092278992A6000AEA41 /* FeaturedTabView.swift in Sources */,
 				E73A4B7E2788875500248287 /* FeaturedItemView.swift in Sources */,
 				E784189D2783126D0089421B /* CycleShopapp.swift in Sources */,
+				E702F07A278E10CD00434DF3 /* CartFavouriteView.swift in Sources */,
 				E747688D278C2E3700C9C346 /* SectionView.swift in Sources */,
 				E78418B72783189F0089421B /* Constants.swift in Sources */,
 				E73A4B742788443200248287 /* NavigationBarView.swift in Sources */,

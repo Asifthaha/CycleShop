@@ -15,7 +15,7 @@ struct NavigationDetailView: View {
                 
                 Image(systemName: "chevron.left")
                     .font(.title)
-                    .foregroundColor(.white)
+                    .foregroundColor(.pink)
             })
             Spacer()
             
@@ -23,7 +23,7 @@ struct NavigationDetailView: View {
                 
                 Image(systemName: "cart")
                     .font(.title)
-                    .foregroundColor(.white)
+                    .foregroundColor(.pink)
             })
         }
     }

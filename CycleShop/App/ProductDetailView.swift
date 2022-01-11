@@ -20,22 +20,28 @@ struct ProductDetailView: View {
             TopPartDetailView()
                 .padding(.top, 60)
                 .padding(.horizontal)
+            Spacer()
             VStack(alignment: .center, spacing: 0, content: {
+                RatingsView()
+                    .padding(.horizontal, 2)
+                Spacer()
                 ScrollView(.vertical,showsIndicators: false, content: {
                     Text(sampleProduct.specification)
                         .font(.system(.body, design: .rounded))
                         .multilineTextAlignment(.leading)
                 })
+                CartFavouriteView()
+                    .padding(.vertical, 10)
                 Spacer()
             })
                 .padding(.horizontal)
-                
+               
                 
             Spacer()
         })
             .ignoresSafeArea(.all, edges: .all)
             .background(
-                (Color(red: 174/255, green: 254/255, blue: 255/255)).ignoresSafeArea(.all, edges: .all)
+                (Color(red: 218/255, green: 221/255, blue: 252/255)).ignoresSafeArea(.all, edges: .all)
             )
     }
 }

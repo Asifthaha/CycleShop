@@ -18,16 +18,19 @@ struct TopPartDetailView: View {
                 Text("SEK \(sampleProduct.price)")
                     .font(.title2)
                     .fontWeight(.black)
-                    .scaleEffect(1.2, anchor: .leading)
+                    .scaleEffect(1, anchor: .leading)
                 
             })
                 .offset(y: isAnimating ? -50 : -75)
         
+            HStack (alignment: .center, spacing: 6, content: {
+           
             Image(sampleProduct.image)
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
                 .offset(y: isAnimating ? 0 : -35)
-                .cornerRadius(12)
+                .cornerRadius(12)  })
+            
         })
             .onAppear(perform: {
                 withAnimation(.easeOut(duration: 0.75)){
