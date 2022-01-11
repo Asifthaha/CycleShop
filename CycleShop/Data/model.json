@@ -1,0 +1,27 @@
+[
+  {
+    "id" : 1,
+    "image" : "atb",
+    "title" : "All Terrain Bikes"
+  },
+  {
+    "id" : 2,
+    "image" : "citycycle",
+    "title" : "Urban Bikes"
+  },
+  {
+    "id" : 3,
+    "image" : "kids",
+    "title" : "Kids Bikes"
+  },
+  {
+    "id" : 4,
+    "image" : "ladies",
+    "title" : "Ladies Bikes"
+  },
+  {
+    "id" : 5,
+    "image" : "sports",
+    "title" : "Sports Bikes"
+  }
+]

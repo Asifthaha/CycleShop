@@ -1,0 +1,66 @@
+[
+  {
+    "id" : 1,
+    "name" : "BULLS MTB",
+    "image" : "mtb1",
+    "price" : 2000,
+    "specification" : "Gears : 8 , Disc Brakes : Front & Rear , Shock Absorber : Front,Category: Mountain bike."
+    },
+  {
+    "id" : 2,
+    "name" : "ROCKRIDER",
+    "image" : "mtb2",
+    "price" : 2500,
+    "specification" : "Gears :12 , Disc Brakes : Front & Rear, Shock Absorber : Front, Frame : Light weight ,Category: Mountain bike."
+   },
+  {
+    "id" : 3,
+    "name" : "BBF MTB",
+    "image" : "mtb3",
+    "price" : 3000,
+    "specification" : "Gears :16 , Disc Brakes : Front & Rear, Shock Absorber : Dual, Frame : Light weight, Category: Mountain bike."
+    },
+  {
+    "id" : 4,
+    "name" : "CUBE",
+    "image" : "mtb4",
+    "price" : 3250,
+    "specification" : "Gears :18 , Disc Brakes : Front & Rear, Shock Absorber : Dual, Frame : Light weight, Category: Mountain bike."
+    },
+  {
+    "id" : 5,
+    "name" : "BULLS CS",
+    "image" : "mtb5",
+    "price" : 3500,
+    "specification" : "Gears :24 , Disc Brakes : Front & Rear, Shock Absorber : Dual, Frame : Carbon Steel , Category: Mountain bike."
+    
+  },
+  {
+    "id" : 6,
+    "name" : "PINK LADY",
+    "image" : "pinklady",
+    "price" : 1500,
+    "specification" : "Gears :8 , Disc Brakes : No, Shock Absorber : No, Category : Ladies "
+    
+  },
+  {
+    "id" : 7,
+    "name" : "CANNONDALE",
+    "image" : "sportsbike",
+    "price" : 4000,
+    "specification" : "Gears :26 , Disc Brakes : No, Shock Absorber : No, Frame : Light weight ,Category : Sports "
+    
+  },
+  {
+    "id" : 8,
+    "name" : "PANTHER",
+    "image" : "hybrid",
+    "price" : 3000,
+    "specification" : "Gears :18, Disc Brakes : No, Shock Absorber : No, Category : Hybrid "
+    
+  }
+  
+  
+  
+  
+  ]

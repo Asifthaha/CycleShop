@@ -1,0 +1,33 @@
+[
+  {
+    "id" : 1,
+    "name" : "Helmet",
+    "image" : "helmet"
+  },
+  {
+    "id" : 2,
+    "name" : "Lamps",
+    "image" : "lamp"
+  },
+  {
+    "id" : 3,
+    "name" : "Seats",
+    "image" : "seat"
+  },
+  {
+    "id" : 4,
+    "name" : "Locks",
+    "image" : "lock"
+  },
+  {
+    "id" : 5,
+    "name" : "Tyres",
+    "image" : "tyre"
+  },
+  {
+    "id" : 6,
+    "name" : "Gears",
+    "image" : "gear"
+  }
+
+]
