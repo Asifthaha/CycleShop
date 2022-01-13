@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+public let userDefaults = UserDefaults.standard
+
 // DATA
 
 let cyclemodels : [Model] = Bundle.main.decode("model.json")
@@ -28,3 +30,28 @@ var gridLayout: [GridItem] {
 }
 
 
+let feedback = UIImpactFeedbackGenerator(style: .medium)
+
+//Firestore
+
+//Product
+public let kID = "id"
+public let kNAME = "name"
+public let kPRICE = "price"
+public let kIMAGE = "image"
+
+//Order
+public let kPRODUCTID = "productIds"
+public let kCUSTOMERID = "customerId"
+public let kAMOUNT = "amount"
+
+
+//FUser
+
+public let kEMAIL = "email"
+public let kFIRSTNAME = "firstname"
+public let kLASTNAME = "lastname"
+public let kFULLNAME = "fullname"
+public let kCURRENTUSER = "currentUser"
+public let kFULLADRESS = "fullAddress"
+public let kPHONENUBER = "phoneNumber"

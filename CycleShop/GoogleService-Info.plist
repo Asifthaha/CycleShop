@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>406446949510-8it6f5r8atlf0mrh17fj9qp1jepe21fr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.406446949510-8it6f5r8atlf0mrh17fj9qp1jepe21fr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAomUEGJ4HlargWyPwH8iTucx8aqGMZLAI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>406446949510</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.asif.CycleShop</string>
+	<key>PROJECT_ID</key>
+	<string>cycleshop-7e637</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cycleshop-7e637.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:406446949510:ios:d47b65d6fe3eb2d3e5fd07</string>
+</dict>
+</plist>

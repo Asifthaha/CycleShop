@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct CartFavouriteView: View {
+    
+    @EnvironmentObject var shop : Shop
     @State private var counter: Int = 0
     var body: some View {
         HStack(alignment: .center, spacing: 6, content: {
-            Button(action: {}, label: {
+            Button(action: {
+                feedback.impactOccurred()
+               
+            }, label: {
                
                 Text("Add to Cart".uppercased())
                     .font(.system(.title2, design: .rounded))
@@ -45,6 +50,7 @@ struct CartFavouriteView: View {
 struct CartFavouriteView_Previews: PreviewProvider {
     static var previews: some View {
         CartFavouriteView()
+            .environmentObject(Shop())
             .previewLayout(.sizeThatFits)
             .padding()
     }
