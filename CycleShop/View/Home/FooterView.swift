@@ -14,9 +14,7 @@ struct FooterView: View {
                 .foregroundColor(.gray )
                 .multilineTextAlignment(.center)
                 .layoutPriority(2)
-            Image("logo-lineal")
-                .renderingMode(.template)
-                .foregroundColor(.gray)
+            
             Text("Copyright © Asif Thaha\nAll rights reserved")
                 .font(.footnote)
                 .fontWeight(.bold)

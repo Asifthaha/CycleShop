@@ -27,12 +27,16 @@ struct NavigationDetailView: View {
             })
             Spacer()
             
-            Button(action: {}, label: {
+           Button(action: {}
+              
+           , label: {
                 
                 Image(systemName: "cart")
-                    .font(.title)
-                    .foregroundColor(.pink)
-            })
+                   .font(.title)
+                .foregroundColor(.pink)
+           })
+            
+            
         }
     }
 }

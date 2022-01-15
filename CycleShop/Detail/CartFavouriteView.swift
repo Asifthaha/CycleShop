@@ -9,12 +9,15 @@ import SwiftUI
 
 struct CartFavouriteView: View {
     
+    @State private var showingAlert = false
+    
     @EnvironmentObject var shop : Shop
     @State private var counter: Int = 0
     var body: some View {
         HStack(alignment: .center, spacing: 6, content: {
             Button(action: {
                 feedback.impactOccurred()
+                showingAlert.toggle()
                
             }, label: {
                
@@ -44,6 +47,10 @@ struct CartFavouriteView: View {
             .font(.system(.title, design: .rounded))
             .foregroundColor(.black)
             .imageScale(.large)
+            .alert(isPresented: $showingAlert) {
+                
+                Alert(title: Text("Added to Cart"), dismissButton: .default(Text("OK")))
+            }
     }
 }
 
