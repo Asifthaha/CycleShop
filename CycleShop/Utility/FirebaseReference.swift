@@ -7,9 +7,10 @@
 
 import Foundation
 import FirebaseFirestore
+import Firebase
 
 
-enum FcollectionReference : String {
+enum FCollectionReference : String {
     
     case User
     case Products
@@ -18,10 +19,13 @@ enum FcollectionReference : String {
     
 }
 
-func FirebaseReference(_ collectionReference : FcollectionReference )->
-CollectionReference {
+func FirebaseReference(_ collectionReference : FCollectionReference ) -> CollectionReference {
     
     return Firestore.firestore().collection(collectionReference.rawValue)
+    
+    
+    
+
 }
 
 

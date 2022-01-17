@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CartFavouriteView: View {
+  
+    
     @State private var showingLogin = false
 
     @ObservedObject var cartListener = CartListener()
@@ -80,7 +82,8 @@ struct CartFavouriteView: View {
             orderCart.ownerId = Fuser.currentId()
             orderCart.id = UUID().uuidString
         }
-        orderCart.add(shop.selectedProduct!)
+        
+        orderCart.add(self.shop.selectedProduct!)
         orderCart.saveCarttoFirebase()
     }
 }

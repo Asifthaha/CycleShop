@@ -27,7 +27,6 @@
 		E77775AA278D7FBB00CEAD4D /* NavigationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77775A9278D7FBB00CEAD4D /* NavigationDetailView.swift */; };
 		E77775AC278D8BAB00CEAD4D /* HeaderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77775AB278D8BAB00CEAD4D /* HeaderDetailView.swift */; };
 		E77775AE278D905C00CEAD4D /* TopPartDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77775AD278D905C00CEAD4D /* TopPartDetailView.swift */; };
-		E7788CD92792CFD000E67F40 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7788CD82792CFD000E67F40 /* RegistrationView.swift */; };
 		E7788CDB2792D1BC00E67F40 /* FinishRegistrationview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7788CDA2792D1BC00E67F40 /* FinishRegistrationview.swift */; };
 		E7788CDD2792D79300E67F40 /* Fuser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7788CDC2792D79300E67F40 /* Fuser.swift */; };
 		E784189D2783126D0089421B /* CycleShopapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784189C2783126D0089421B /* CycleShopapp.swift */; };
@@ -73,7 +72,6 @@
 		E77775A9278D7FBB00CEAD4D /* NavigationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDetailView.swift; sourceTree = "<group>"; };
 		E77775AB278D8BAB00CEAD4D /* HeaderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDetailView.swift; sourceTree = "<group>"; };
 		E77775AD278D905C00CEAD4D /* TopPartDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPartDetailView.swift; sourceTree = "<group>"; };
-		E7788CD82792CFD000E67F40 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E7788CDA2792D1BC00E67F40 /* FinishRegistrationview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRegistrationview.swift; sourceTree = "<group>"; };
 		E7788CDC2792D79300E67F40 /* Fuser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuser.swift; sourceTree = "<group>"; };
 		E78418992783126D0089421B /* CycleShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CycleShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,7 +237,6 @@
 				E747688E278C51FC00C9C346 /* TitleView.swift */,
 				E7476892278C6ADB00C9C346 /* ProductItemView.swift */,
 				E705C5DE2791D0F90062EC84 /* LoginView.swift */,
-				E7788CD82792CFD000E67F40 /* RegistrationView.swift */,
 				E7788CDA2792D1BC00E67F40 /* FinishRegistrationview.swift */,
 				E7CA5D2527958FFE00A46121 /* CartView.swift */,
 			);
@@ -348,7 +345,6 @@
 				E7476893278C6ADB00C9C346 /* ProductItemView.swift in Sources */,
 				E7788CDB2792D1BC00E67F40 /* FinishRegistrationview.swift in Sources */,
 				E702F078278DF7D000434DF3 /* RatingsView.swift in Sources */,
-				E7788CD92792CFD000E67F40 /* RegistrationView.swift in Sources */,
 				E7788CDD2792D79300E67F40 /* Fuser.swift in Sources */,
 				E7BAA39527904D2D006CBE99 /* SignUpSignInView.swift in Sources */,
 				E705C5DD2791C5060062EC84 /* CartModel.swift in Sources */,
