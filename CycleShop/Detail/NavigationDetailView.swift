@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NavigationDetailView: View {
     
+    @State private var showingCart = false
+    
     @EnvironmentObject var shop : Shop
     
     var body: some View {
@@ -27,14 +29,28 @@ struct NavigationDetailView: View {
             })
             Spacer()
             
-           Button(action: {}
+           Button(action: {
+               self.showingCart.toggle()
+           }
               
            , label: {
                 
                 Image(systemName: "cart")
                    .font(.title)
                 .foregroundColor(.pink)
-           })
+           }).sheet(isPresented: $showingCart){
+               
+               if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding {
+                   
+                   
+                   CartView()
+               } else if Fuser.currentUser() != nil {
+                   
+                   LoginView()
+               }
+               
+            
+           }
             
             
         }

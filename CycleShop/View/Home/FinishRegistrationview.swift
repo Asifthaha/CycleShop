@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FinishRegistrationview: View {
+    
+    @Environment(\.presentationMode) var presentationMode
     @State var name = ""
     @State var surname = ""
     @State var telephone = ""
@@ -16,7 +18,7 @@ struct FinishRegistrationview: View {
         Form{
             Section(){
                 Text("Finish Registration")
-                    .fontWeight(.heavy)
+                    .fontWeight(.bold)
                     .font(.largeTitle)
                     .padding([.top, .bottom], 20)
                 TextField("Name", text: $name)
@@ -44,7 +46,18 @@ struct FinishRegistrationview: View {
     
     private func finishRegistration() {
         
+        let fullName = name + " " + surname
         
+        updateCurrentUser(withValues: [kFIRSTNAME : name,kLASTNAME : surname , kFULLNAME: fullName, kFULLADRESS : address, kPHONENUBER: telephone, kONBOARD : true ]) { (error) in
+            if error != nil {
+                
+                print("error updating user")
+                return
+            }
+            
+            self.presentationMode.wrappedValue.dismiss()
+        
+        }
     }
 }
 

@@ -7,14 +7,14 @@
 
 import Foundation
 import FirebaseFirestore
-import GameController
+
 
 enum FcollectionReference : String {
     
     case User
     case Products
     case Order
-    case Basket
+    case Cart
     
 }
 

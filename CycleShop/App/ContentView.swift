@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var productListener = ProductListener ()
+    
+   
     @EnvironmentObject var shop: Shop
     
     var body: some View {

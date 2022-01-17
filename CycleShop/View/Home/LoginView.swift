@@ -9,32 +9,32 @@ import SwiftUI
 
 struct LoginView: View {
     
- @State var showingSignup = false
-    @State var showFinishReg = false
+@State var showingSignup = false
+@State var showFinishReg = false
     
     @Environment(\.presentationMode) var presentationMode
     
 @State var email = ""
- @State var password = ""
-    @State var repeatPassword = ""
+@State var password = ""
+@State var repeatPassword = ""
     var body: some View {
         VStack{
             
-            Text("Sign In")
+        Text("Sign In")
                 .fontWeight(.heavy)
                 .font(.largeTitle)
                 .padding([.bottom, .top],20)
             
-            VStack(alignment: .leading){
+        VStack(alignment: .leading){
                 
-                VStack(alignment: .leading){
+        VStack(alignment: .leading){
                     
-                    Text("Email")
+        Text("Email")
                         .font(.headline)
                         .fontWeight(.light)
                         .foregroundColor(Color.init(.label))
                         .opacity(0.75)
-                    TextField("Enter your email", text: $email)
+                TextField("Enter your email", text: $email)
                     Divider()
                     Text("Password")
                         .font(.headline)
@@ -79,9 +79,34 @@ struct LoginView: View {
             
             SignUpView(showingSignup: $showingSignup)
     }//End of Vstack
+        
+        .sheet(isPresented: $showFinishReg) {
+            
+            FinishRegistrationview()
+        }
 }
     
     private func login() {
+        
+        if email != "" && password != "" {
+            
+            Fuser.loginUserWith(email: email, password: password) { error, isEmailVerified in
+                if error != nil {
+                    
+                    print("error loging in")
+                    return
+                }
+                if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding{
+                    
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                } else {
+                   
+                    self.showFinishReg.toggle()
+                    
+                }
+            }
+        }
         
         
     }

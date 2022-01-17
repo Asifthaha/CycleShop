@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NavigationBarView: View {
+    @State private var showingCart = false
     @State private var isAnimated : Bool = false
     var body: some View {
         HStack {
@@ -29,7 +30,9 @@ struct NavigationBarView: View {
                     }
                     
                 })
-            Button(action: {}, label: {
+            Button(action: {
+                self.showingCart.toggle()
+            }, label: {
                 ZStack {
                     Image(systemName: "cart")
                         .font(.title)
@@ -40,7 +43,16 @@ struct NavigationBarView: View {
                         .frame(width: 14, height: 14, alignment: .center)
                         .offset(x: 13, y: -10)
                 }
-            })
+            }).sheet(isPresented: $showingCart){
+                
+               if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding {
+                    
+                    
+                    CartView()
+                } else if Fuser.currentUser() != nil {
+                    
+                   LoginView() }
+            }
         }
     }
 }
