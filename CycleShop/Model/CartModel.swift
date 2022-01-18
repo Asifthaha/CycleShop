@@ -51,6 +51,7 @@ func CartDictionaryFrom(_ cart : CartOrder)->[String : Any] {
     for product in cart.items {
         
         allProductNames.append(product.name)
+      
     }
     
     return NSDictionary(objects: [cart.id!,
