@@ -12,3 +12,11 @@ class Shop : ObservableObject{
     @Published var showingProduct: Bool = false
     @Published var selectedProduct: Product? = nil
 }
+
+
+class UserStatus : ObservableObject {
+    
+    @Published var userloggedIn : Bool = false
+    
+}
+

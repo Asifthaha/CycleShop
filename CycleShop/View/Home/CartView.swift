@@ -8,27 +8,20 @@
 import SwiftUI
 
 struct CartView: View {
-    
     @ObservedObject var cartListener = CartListener()
     var body: some View {
         NavigationView{
             
             List {
-                
                 Section{
-                    
-                    ForEach(self.cartListener.orderCart?.items ?? []){
-                        
+                    ForEach(self.cartListener.orderCart?.items ?? []) {
                         product in
                         HStack{
-                            
                             Text(product.name)
                             Spacer()
                             Text("SEK\(product.price)")
                         }
-                        
                     }
-                    
                 }
                 
                 Section{

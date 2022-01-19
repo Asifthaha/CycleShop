@@ -69,18 +69,12 @@ init(_id: String, _email: String, _firstName : String, _lastName: String, _phone
                 if authDataResult!.user.isEmailVerified {
                     
                     downloadUserFromFirestore(userId: authDataResult!.user.uid, email: email) { error in
-                       
                         completion(error, true)
                     }
                     
-                    
-                    
-                    
                 } else {
-                    
                     completion(error, false)
                 }
-                
                 
             }else {
                 
@@ -101,6 +95,28 @@ init(_id: String, _email: String, _firstName : String, _lastName: String, _phone
                     print("verification sent", error?.localizedDescription)
                 }
             }
+            
+        }
+    }
+    
+    class func resetPassword(email : String , completion : @escaping(_ error: Error?) -> Void){
+        
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            completion(error)
+        }
+    }
+    
+    class func logOutCurrentUser(completion : @escaping(_ error : Error?) -> Void) {
+    
+        do {
+            
+            try Auth.auth().signOut()
+            userDefaults.removeObject(forKey : kCURRENTUSER)
+            userDefaults.synchronize()
+            completion(nil)
+            
+        } catch let error as Error {
+            
             
         }
     }
@@ -179,6 +195,9 @@ func updateCurrentUser(withValues : [String: Any], completion: @escaping(_ error
             if error == nil {
                 
                 saveUserLocally(userDictionary: userObject)
+            } else if error != nil {
+                
+                print("check error", error!.localizedDescription)
             }
             
             

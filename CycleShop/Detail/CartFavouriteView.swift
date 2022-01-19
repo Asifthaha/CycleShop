@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CartFavouriteView: View {
   
-    
     @State private var showingLogin = false
 
     @ObservedObject var cartListener = CartListener()

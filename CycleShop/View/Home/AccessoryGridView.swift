@@ -20,15 +20,13 @@ struct AccessoryGridView: View {
                         AccessoryItemView(accessory: accessory)
                     }
                 }
-                
-                
+              
             })
                 .frame(height: 165)
                 .padding(.horizontal,15)
                 .padding(.vertical, 10)
             
         }
-        
         
         )
     }

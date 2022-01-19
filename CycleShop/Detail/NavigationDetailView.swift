@@ -41,18 +41,15 @@ struct NavigationDetailView: View {
            }).sheet(isPresented: $showingCart){
                
                if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding {
-                   
-                   
+                 
                    CartView()
                } else if Fuser.currentUser() != nil {
                    
                    LoginView()
                }
-               
-            
+             
            }
-            
-            
+         
         }
     }
 }

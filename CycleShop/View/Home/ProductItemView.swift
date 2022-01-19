@@ -16,8 +16,7 @@ struct ProductItemView: View {
                 Image(product.image)
                     .resizable()
                     .scaledToFit()
-                    
-                  
+                
             }
             .cornerRadius(12)
             Text(product.name)
@@ -26,9 +25,6 @@ struct ProductItemView: View {
             Text("SEK \(product.price)")
                 .fontWeight(.semibold)
                 .foregroundColor(.gray)
-            
-            
-            
             
         })
     }

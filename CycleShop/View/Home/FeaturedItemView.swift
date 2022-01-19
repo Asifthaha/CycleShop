@@ -18,10 +18,7 @@ struct FeaturedItemView: View {
                 .resizable()
                 .scaledToFill()
                 .cornerRadius(12)
-            
-        
-            
-            
+          
             Text(cyclemodel.title)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
@@ -39,7 +36,6 @@ struct FeaturedItemView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
             .padding()
             .background(colorBackground)
-      
-        
+    
     }
 }

@@ -19,7 +19,7 @@ class CartListener : ObservableObject{
     
     func downloadCart() {
         
-        FirebaseReference(.Cart).whereField(kOWNERID, isEqualTo: "123").addSnapshotListener{( snapshot, error) in
+        FirebaseReference(.Cart).whereField(kOWNERID, isEqualTo: Fuser.currentId()).addSnapshotListener{( snapshot, error) in
             
             guard let snapshot = snapshot else {return}
             

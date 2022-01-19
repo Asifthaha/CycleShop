@@ -7,12 +7,16 @@
 
 import SwiftUI
 
+
 struct LoginView: View {
+
+    @EnvironmentObject var userStatus : UserStatus
     
 @State var showingSignup = false
 @State var showFinishReg = false
-    
-    @Environment(\.presentationMode) var presentationMode
+@State var showingAlert = false
+@State private var errorTitle = ""
+@Environment(\.presentationMode) var presentationMode
     
 @State var email = ""
 @State var password = ""
@@ -55,7 +59,7 @@ struct LoginView: View {
             
                 }.padding(.bottom, 15)
                     .animation(.easeOut(duration: 0.1))
-                
+                  
                 HStack{
                     
                     Spacer()
@@ -64,6 +68,7 @@ struct LoginView: View {
                             .foregroundColor(Color.gray.opacity(0.5))
                     })
                 }//End of Hstack
+                
             }.padding(.horizontal, 6)
             Button(action: {
                 self.showingSignup ? self.signUp() : self.login()
@@ -79,6 +84,11 @@ struct LoginView: View {
             
             SignUpView(showingSignup: $showingSignup)
     }//End of Vstack
+        .alert(isPresented: $showingAlert) {
+            
+            Alert(title: Text(self.errorTitle), dismissButton: .default(Text("OK")))
+            
+        }
         
         .sheet(isPresented: $showFinishReg) {
             
@@ -91,14 +101,30 @@ struct LoginView: View {
         if email != "" && password != "" {
             
             Fuser.loginUserWith(email: email, password: password) { error, isEmailVerified in
+                
                 if error != nil {
                     
-                    print("error loging in")
+                    self.errorTitle = "Incorrect email or password"
+                    
+                    self.showingAlert.toggle()
+                    return
+                }
+                
+                else if !isEmailVerified {
+                    
+                    self.errorTitle = "Please verify your email and login"
+                    
+                    self.showingAlert.toggle()
                     return
                 }
                 if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding{
                     
+                    print("login successful)")
+                    
+                    self.userStatus.userloggedIn.toggle()
+                    
                     self.presentationMode.wrappedValue.dismiss()
+                    
                     
                 } else {
                    
@@ -118,40 +144,48 @@ struct LoginView: View {
                 
                 Fuser.registerUserwith(email: email, password: password) {(error) in
                     if error != nil {
-                        
+                        if error!.localizedDescription .contains("The email address is already in use by another account") {
+                            
+                            self.errorTitle = "User already Exists"
+                            
+                            self.showingAlert.toggle()
+                        }
+                       
                         print("Error registering user", error!.localizedDescription)
                         return
                     }
-                  
-                        
                     
+                    self.presentationMode.wrappedValue.dismiss()
+                 
                 }
                 
                 
             } else {
                 
-                print("passwords dont match")
+                self.errorTitle = "Passwords do not match"
+                
+                self.showingAlert.toggle()
             }
             
         } else {
             
-            print("Email and password must be set")
+            self.errorTitle = "Email and Password must be set"
+            self.showingAlert.toggle()
         }
-        
-        
-        
-        
+   
     }
     
     private func resetPassword() {
-        
-        
+    
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(UserStatus())
+            
+        
     }
 }
 

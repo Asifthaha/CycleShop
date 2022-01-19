@@ -19,7 +19,6 @@ struct SectionView: View {
                 .rotationEffect(Angle(degrees:rotateClockwise ? 90 :-90))
             Spacer()
         
-            
         }
         .background(colorGray.cornerRadius(12))
         .frame(width:90)

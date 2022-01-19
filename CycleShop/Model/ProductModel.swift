@@ -18,7 +18,6 @@ struct Product: Codable, Identifiable {
     let specification : String
 }
 
-
 func productDictionaryFrom(product: Product) -> [String: Any] {
     
     return NSDictionary(objects: [product.id,
@@ -38,9 +37,7 @@ func createProduct() {
     
     for product in products  {
         FirebaseReference(.Products).addDocument(data: productDictionaryFrom(product: product))
-        
-        
-        
+   
         
     }
 }

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct FinishRegistrationview: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @State var showingContentView = false
+    
+    //@Environment(\.presentationMode) var presentationMode
     @State var name = ""
     @State var surname = ""
     @State var telephone = ""
@@ -19,24 +21,26 @@ struct FinishRegistrationview: View {
             Section(){
                 Text("Finish Registration")
                     .fontWeight(.bold)
-                    .font(.largeTitle)
+                    .font(.title)
+                    
                     .padding([.top, .bottom], 20)
                 TextField("Name", text: $name)
                 TextField("Surname", text: $surname)
                 TextField("Telephone", text: $telephone)
                 TextField("Address", text: $address)
-                
-                
-                
+              
             }//End of section
             
             Section(){
-                
                 Button(action: {self.finishRegistration()}, label: {
                     Text("Finish Registration")
                 })
             } .disabled(!self.fieldsCompleted())
         }//End of form
+        .sheet(isPresented: $showingContentView){
+            
+            ContentView()
+        }
     }
     
     private func fieldsCompleted() -> Bool {
@@ -55,7 +59,8 @@ struct FinishRegistrationview: View {
                 return
             }
             
-            self.presentationMode.wrappedValue.dismiss()
+            self.showingContentView.toggle()
+           // self.presentationMode.wrappedValue.dismiss()
         
         }
     }

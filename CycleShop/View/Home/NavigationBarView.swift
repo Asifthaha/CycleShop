@@ -20,7 +20,6 @@ struct NavigationBarView: View {
             
             Spacer()
             
-        
             LogoView()
                 .opacity(isAnimated ? 1 : 0 )
                 .offset(x:-50, y: isAnimated ? 0 : -25)
@@ -62,7 +61,6 @@ struct NavigationBarView_Previews: PreviewProvider {
         NavigationBarView()
             .previewLayout(.sizeThatFits)
             .padding()
-        
-        
+    
     }
 }

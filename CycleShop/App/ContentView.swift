@@ -10,8 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var productListener = ProductListener ()
     
-   
     @EnvironmentObject var shop: Shop
+    @EnvironmentObject var userStatus : UserStatus
     
     var body: some View {
        
@@ -49,13 +49,11 @@ struct ContentView: View {
                                         }
                                 }
                                 .padding(15)
-                                
-                                
+
                             })
-                            
-                            SignUpSignInView()
-                             
-                              
+                        
+                              SignUpSignInView()
+                           
                     FooterView()
                         .padding(.horizontal)
                 }
@@ -68,6 +66,7 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea(.all,edges: .top)
+       
     }
 }
 
@@ -75,6 +74,8 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(Shop())
+            .environmentObject(UserStatus())
+            
        
     }
 }

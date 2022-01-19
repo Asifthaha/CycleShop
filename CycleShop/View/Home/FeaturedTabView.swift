@@ -14,11 +14,8 @@ struct FeaturedTabView: View {
                 FeaturedItemView(cyclemodel:model)
                     .padding(.top, 10)
                     .padding(.horizontal,14)
-                   
-            
             
             }
-            
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
     }
