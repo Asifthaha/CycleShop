@@ -42,7 +42,7 @@ public let kIMAGE = "image"
 public let kSpec = "specification"
 
 //Order
-public let kPRODUCTID = "productIds"
+public let kPRODUCTIDS = "productIds"
 public let kCUSTOMERID = "customerId"
 public let kAMOUNT = "amount"
 public let kOWNERID = "OwnerId"

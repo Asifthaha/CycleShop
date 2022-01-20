@@ -10,11 +10,11 @@ import SwiftUI
 
 struct LoginView: View {
 
-    @EnvironmentObject var userStatus : UserStatus
-    
+@Binding var userloggedIn : Bool
 @State var showingSignup = false
 @State var showFinishReg = false
 @State var showingAlert = false
+
 @State private var errorTitle = ""
 @Environment(\.presentationMode) var presentationMode
     
@@ -94,6 +94,8 @@ struct LoginView: View {
             
             FinishRegistrationview()
         }
+        
+       
 }
     
     private func login() {
@@ -121,19 +123,17 @@ struct LoginView: View {
                     
                     print("login successful)")
                     
-                    self.userStatus.userloggedIn.toggle()
+                    self.userloggedIn = true
                     
                     self.presentationMode.wrappedValue.dismiss()
                     
-                    
                 } else {
-                   
-                    self.showFinishReg.toggle()
                     
+                    self.showFinishReg.toggle()
+                   
                 }
             }
         }
-        
         
     }
     
@@ -176,16 +176,43 @@ struct LoginView: View {
     }
     
     private func resetPassword() {
+        if email != "" {
+            Fuser.resetPassword(email: email) { (error)in
+                if error != nil {
+                    
+                    if error!.localizedDescription.contains("The email address is badly formatted") {
+                        
+                        self.errorTitle = "Check the email you have entered"
+                        self.showingAlert.toggle()
+                        return
+                       
+                    } else if error!.localizedDescription.contains("There is no user record corresponding to this identifier") {
+                        
+                        self.errorTitle = "User do not exist"
+                        self.showingAlert.toggle()
+                        return
+                     
+                    }
+                   
+                }
+                self.errorTitle = "An email is sent to your inbox to reset password"
+                self.showingAlert.toggle()
+              print("Please check your email")
+            }
+           
+        }else
+        {
+            self.errorTitle = "Enter your email and click me"
+            self.showingAlert.toggle()
+            print("email is empty")
+        }
     
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
-            .environmentObject(UserStatus())
-            
-        
+        LoginView(userloggedIn: .constant(false))
     }
 }
 

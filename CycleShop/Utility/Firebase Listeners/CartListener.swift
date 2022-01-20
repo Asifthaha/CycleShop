@@ -19,38 +19,43 @@ class CartListener : ObservableObject{
     
     func downloadCart() {
         
-        FirebaseReference(.Cart).whereField(kOWNERID, isEqualTo: Fuser.currentId()).addSnapshotListener{( snapshot, error) in
+        if Fuser.currentUser() != nil {
             
-            guard let snapshot = snapshot else {return}
-            
-            if !snapshot.isEmpty {
+            FirebaseReference(.Cart).whereField(kOWNERID, isEqualTo: Fuser.currentId()).addSnapshotListener { (snapshot, error) in
                 
-                let cartData = snapshot.documents.first!
+                guard let snapshot = snapshot else {return}
                 
-        getProductsFromFirestore(withIds: cartData[kPRODUCTID] as? [String] ?? []) {(allProducts) in
-            
-            let cart = CartOrder()
-            
-            cart.ownerId = (cartData[kOWNERID] as? String)!
-            cart.id = cartData[kID] as? String
-            
-            cart.items = allProducts
-            self.orderCart = cart
-            
+                if !snapshot.isEmpty {
                     
+                    let cartData = snapshot.documents.first!.data()
+                    
+                    getProductsFromFirestore(withIds: cartData[kPRODUCTIDS] as? [String] ?? [])  { (allProducts) in
+                        
+                        let cart = CartOrder()
+                        
+                        cart.ownerId = (cartData[kOWNERID] as? String)!
+                        cart.id = cartData[kID] as? String
+                        
+                        cart.items = allProducts
+                        self.orderCart = cart
+                        
+                        
+                    }
                 }
-            
-        }
+                
+            }
             
         }
         
-    }
+        
+        }
+     
 }
 
-func getProductsFromFirestore(withIds:[String], completion: @escaping(_ productArray:[Product])-> Void) {
+func getProductsFromFirestore(withIds: [String], completion: @escaping(_ productArray:[Product]) -> Void) {
     
     var count = 0
-    var productArray :[Product] = []
+    var productArray : [Product] = []
     
     if withIds.count == 0 {
         
@@ -64,13 +69,13 @@ func getProductsFromFirestore(withIds:[String], completion: @escaping(_ productA
             if !snapshot.isEmpty {
                 
                 let productData = snapshot.documents.first!
-                productArray.append(Product(id: productData[kID] as? Int ?? 1, name: productData[kNAME] as? String ?? "unknown", image: productData[kIMAGE] as? String ?? "unknown", price: productData[kPRICE] as? Int ?? 0, specification: productData[kSpec] as? String ?? "unknown"))
+                productArray.append(Product(id: productData[kID] as? String ?? "1", name: productData[kNAME] as? String ?? "unknown", image: productData[kIMAGE] as? String ?? "unknown", price: productData[kPRICE] as? Int ?? 0, specification: productData[kSpec] as? String ?? "unknown"))
                 
                 count += 1
                 
                 
             } else {
-                
+                print("no products")
                 completion(productArray)
             }
             if count == withIds.count {

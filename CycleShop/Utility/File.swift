@@ -16,7 +16,5 @@ class Shop : ObservableObject{
 
 class UserStatus : ObservableObject {
     
-    @Published var userloggedIn : Bool = false
-    
+    @Published var userLoggedIn : Bool = false
 }
-

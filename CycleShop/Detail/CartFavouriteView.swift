@@ -10,6 +10,8 @@ import SwiftUI
 struct CartFavouriteView: View {
   
     @State private var showingLogin = false
+   
+   
 
     @ObservedObject var cartListener = CartListener()
     @State private var showingAlert = false
@@ -47,7 +49,7 @@ struct CartFavouriteView: View {
                     if Fuser.currentUser() != nil {
                     FinishRegistrationview()
                 } else {
-                    LoginView()
+                    LoginView(userloggedIn: .constant(false))
                 }
             }
         

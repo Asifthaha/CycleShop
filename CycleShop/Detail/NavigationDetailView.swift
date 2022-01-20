@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NavigationDetailView: View {
     
+    
     @State private var showingCart = false
     
     @EnvironmentObject var shop : Shop
@@ -45,7 +46,7 @@ struct NavigationDetailView: View {
                    CartView()
                } else if Fuser.currentUser() != nil {
                    
-                   LoginView()
+                   LoginView(userloggedIn: .constant(false))
                }
              
            }

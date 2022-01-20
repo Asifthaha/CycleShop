@@ -10,6 +10,7 @@ import SwiftUI
 struct NavigationBarView: View {
     @State private var showingCart = false
     @State private var isAnimated : Bool = false
+    
     var body: some View {
         HStack {
             Button(action: {}, label: {
@@ -50,7 +51,7 @@ struct NavigationBarView: View {
                     CartView()
                 } else if Fuser.currentUser() != nil {
                     
-                   LoginView() }
+                    LoginView(userloggedIn: .constant(false)) }
             }
         }
     }

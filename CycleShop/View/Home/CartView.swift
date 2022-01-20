@@ -21,6 +21,8 @@ struct CartView: View {
                             Spacer()
                             Text("SEK\(product.price)")
                         }
+                    }.onDelete { (indexSet) in
+                        self.deleteItems(at : indexSet)
                     }
                 }
                 
@@ -33,7 +35,14 @@ struct CartView: View {
             .listStyle(GroupedListStyle())
         }//End of Navigation
     }
+    func deleteItems(at offsets : IndexSet) {
+        
+        self.cartListener.orderCart.items.remove(at: offsets.first!)
+        self.cartListener.orderCart.saveCarttoFirebase()
+    }
 }
+
+
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {

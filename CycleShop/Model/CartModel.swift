@@ -12,7 +12,7 @@ import FirebaseFirestore
 class CartOrder : Identifiable {
 
     var id : String!
-    var ownerId : String = ""
+    var ownerId : String!
     var items : [Product] = []
 
     var total: Int {
@@ -35,6 +35,7 @@ class CartOrder : Identifiable {
     func emptyCart() {
 
         self.items = []
+        saveCarttoFirebase()
 
     }
 
@@ -46,19 +47,19 @@ class CartOrder : Identifiable {
 
 func CartDictionaryFrom(_ cart : CartOrder)->[String : Any] {
 
-    var allProductNames : [String] = []
+    var allProductIds : [String] = []
 
     for product in cart.items {
         
-        allProductNames.append(product.name)
+        allProductIds.append(product.id)
       
     }
     
     return NSDictionary(objects: [cart.id!,
-                                  cart.ownerId,
-                                  allProductNames],
+                                  cart.ownerId!,
+                                  allProductIds],
                                  
                         forKeys: [kID as NSCopying,
                                  kOWNERID as NSCopying,
-                                  kNAME as NSCopying]) as! [String : Any]
+                                  kPRODUCTIDS as NSCopying]) as! [String : Any]
 }

@@ -8,10 +8,10 @@
 import Foundation
 import SwiftUI
 
-struct Product: Codable, Identifiable {
+struct Product: Codable, Identifiable, Hashable {
     
     
-    let id : Int
+    let id : String
     let name : String
     let image : String
     let price : Int
@@ -41,3 +41,5 @@ func createProduct() {
         
     }
 }
+
+

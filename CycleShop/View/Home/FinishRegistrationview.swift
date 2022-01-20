@@ -11,7 +11,7 @@ struct FinishRegistrationview: View {
     
     @State var showingContentView = false
     
-    //@Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode
     @State var name = ""
     @State var surname = ""
     @State var telephone = ""
@@ -37,10 +37,10 @@ struct FinishRegistrationview: View {
                 })
             } .disabled(!self.fieldsCompleted())
         }//End of form
-        .sheet(isPresented: $showingContentView){
+       // .sheet(isPresented: $showingContentView){
             
-            ContentView()
-        }
+            //ContentView()
+        //}
     }
     
     private func fieldsCompleted() -> Bool {
@@ -59,8 +59,8 @@ struct FinishRegistrationview: View {
                 return
             }
             
-            self.showingContentView.toggle()
-           // self.presentationMode.wrappedValue.dismiss()
+           // self.showingContentView.toggle()
+            self.presentationMode.wrappedValue.dismiss()
         
         }
     }

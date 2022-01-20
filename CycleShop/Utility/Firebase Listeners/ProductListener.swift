@@ -27,21 +27,21 @@ class ProductListener: ObservableObject {
         
         if !snapshot.isEmpty {
             
-            self.myProducts = ProductListener.productFromDictinary(_snapshot: snapshot)
+            self.myProducts = ProductListener.productFromDictinary(snapshot)
         }
             
         }
     }
 
-static func productFromDictinary(_snapshot:QuerySnapshot) -> [Product] {
+static func productFromDictinary(_ snapshot: QuerySnapshot) -> [Product] {
     
     var allProducts : [Product] = []
-    for snapshot in _snapshot.documents {
+    for snapshot in snapshot.documents {
         
         let ProductData = snapshot.data()
-        let ProdutItem = (Product(id: ProductData[kID] as? Int ?? 1 , name: ProductData[kNAME] as? String ?? "unknown",image: ProductData[kIMAGE] as? String ?? "unknown" , price: ProductData[kPRICE] as? Int ?? 0, specification: ProductData[kSpec] as? String ?? "unknown") )
+        allProducts.append(Product(id: ProductData[kID] as? String ?? "1", name: ProductData[kNAME] as? String ?? "unknown",image: ProductData[kIMAGE] as? String ?? "unknown" , price: ProductData[kPRICE] as? Int ?? 0, specification: ProductData[kSpec] as? String ?? "unknown") )
         
-        allProducts.append(ProdutItem)
+      
         
     }
     

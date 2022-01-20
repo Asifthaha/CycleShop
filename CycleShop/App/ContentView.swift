@@ -10,8 +10,16 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var productListener = ProductListener ()
     
+    @State private var userloggedIn = false
+    @State var logoutAlert = false
+    
+    
+    @State var showingLoginView = false
+
+    
     @EnvironmentObject var shop: Shop
-    @EnvironmentObject var userStatus : UserStatus
+   
+    
     
     var body: some View {
        
@@ -51,10 +59,48 @@ struct ContentView: View {
                                 .padding(15)
 
                             })
-                        
-                              SignUpSignInView()
+                            
+                            if  userloggedIn == false {
+
+                                Button(action:
+
+                                       { self.showingLoginView.toggle()
+                               }
+
+                               , label: {
+                                   Text("Sign In")
+                                       .font(.footnote)
+                                       .fontWeight(.heavy)
+                                       .foregroundColor(.gray)
+                                       .padding(.bottom, 1)
+
+                            }) .sheet(isPresented: $showingLoginView){
+
+                                LoginView(userloggedIn:$userloggedIn)
+                            } } else  {
+
+                                Button(action: {
+                                Fuser.logOutCurrentUser { (error) in
+                                    if error == nil {
+                                        self.logoutAlert.toggle()
+                                        self.userloggedIn.toggle()
+                                    }
+                                }
+                            }, label: {
+                                Text("Logout")
+                                    .font(.footnote)
+                                .fontWeight(.heavy)
+                                .foregroundColor(.gray)
+                                .padding(.top, 1)
+
+
+                            })
+                            
+
+
+                            }
                            
-                    FooterView()
+                            FooterView()
                         .padding(.horizontal)
                 }
                     })
@@ -66,6 +112,11 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea(.all,edges: .top)
+        .alert(isPresented: $logoutAlert) {
+            
+            Alert(title: Text("Logged out"))
+            
+        }
        
     }
 }
@@ -74,7 +125,8 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(Shop())
-            .environmentObject(UserStatus())
+           
+            
             
        
     }
