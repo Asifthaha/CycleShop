@@ -43,9 +43,7 @@ func orderDictionaryFrom(_ order : Order) -> [String:Any] {
                                   order.customerId!,
                                   allProductIds,
                                   order.amount!,
-                                
-                                 
-                                 ],
+                                  ],
                                  
                         forKeys: [kID as NSCopying,
                                   kCUSTOMERID as NSCopying,

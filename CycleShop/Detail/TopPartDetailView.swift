@@ -14,9 +14,9 @@ struct TopPartDetailView: View {
         VStack(alignment: .leading, spacing: 6, content: {
             
             VStack(alignment: .leading, spacing: 6, content: {
-                Text("Price")
+                Text(StaticText.price)
                     .fontWeight(.semibold)
-                Text("SEK \(shop.selectedProduct?.price ?? sampleProduct.price)")
+                Text("\(StaticText.SEK) \(shop.selectedProduct?.price ?? sampleProduct.price)")
                     .font(.title2)
                     .fontWeight(.black)
                     .scaleEffect(1, anchor: .leading)

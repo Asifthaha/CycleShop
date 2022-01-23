@@ -9,11 +9,9 @@ import SwiftUI
 
 struct NavigationDetailView: View {
     
-    
     @State private var showingCart = false
     @ObservedObject var cartListener = CartListener()
     @Environment(\.presentationMode) var presentationMode
-    
     @EnvironmentObject var shop : Shop
     
     var body: some View {
@@ -26,7 +24,7 @@ struct NavigationDetailView: View {
                 }
             }, label: {
                 
-                Image(systemName: "chevron.left")
+                Image(systemName: ImageNames.chevron)
                     .font(.title)
                     .foregroundColor(.pink)
             })
@@ -41,12 +39,12 @@ struct NavigationDetailView: View {
                
                if self.cartListener.orderCart?.items.isEmpty == true {
                 
-                Image(systemName: "cart")
+                   Image(systemName: ImageNames.cart)
                    .font(.title)
                    .foregroundColor(.pink) } else {
                        
                        ZStack {
-                           Image(systemName: "cart")
+                           Image(systemName: ImageNames.cart)
                                .font(.title)
                            .foregroundColor(.pink)
                            
@@ -61,15 +59,11 @@ struct NavigationDetailView: View {
            }.sheet(isPresented: $showingCart){
                
                if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding {
-                 
                    CartView()
                } else if Fuser.currentUser() != nil {
-                   
-                   
                    FinishRegistrationview()
                    
                } else {
-                   
                    LoginView()
                }
          
@@ -84,6 +78,5 @@ struct NavigationDetailView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
             .padding()
             .background(Color.gray)
-        
     }
 }

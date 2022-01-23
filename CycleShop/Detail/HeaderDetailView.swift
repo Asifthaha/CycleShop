@@ -12,7 +12,7 @@ struct HeaderDetailView: View {
     @EnvironmentObject var shop : Shop
     var body: some View {
         VStack(alignment: .leading, spacing: 6, content: {
-            Text("Bikes")
+            Text(StaticText.bikes)
             Text(shop.selectedProduct?.name ?? sampleProduct.name)
                 .font(.largeTitle)
                 .fontWeight(.black)

@@ -24,8 +24,7 @@ struct FeaturedItemView: View {
                 .fontWeight(.heavy)
                 .foregroundColor(.white)
                 .padding(.top, 30)
-                
-                
+            
         }
     }
 }

@@ -59,3 +59,62 @@ public let kCURRENTUSER = "currentUser"
 public let kFULLADRESS = "fullAddress"
 public let kPHONENUBER = "phoneNumber"
 public let kONBOARD = "onBoard"
+
+struct ImageNames {
+    static let chevron = "chevron.left"
+    static let cart = "cart"
+}
+
+struct StaticText {
+    static let bikes = "Bikes"
+    static let price = "Price"
+    static let SEK = "SEK"
+    static let ratings = "Ratings"
+    static let size = "Size"
+    static let addToCart = "Item added to Cart"
+    static let chooseSize = "Choose size"
+}
+
+struct FooterText {
+     static let footerDesc = "We offer the most modern, comfortable, lightweight and durable bicycles in the market at afforadable prices."
+    static let copyright  = "Copyright © Asif Thaha\nAll rights reserved"
+   
+}
+
+struct AlertTexts {
+    
+    static let wrongEmailPass = "Incorrect Email or Password"
+    static let verifyEmail = "Please verify your email and login"
+    static let signUpAlert = "Please verify the link sent to your inbox and login"
+    static let existingUser = "User Already exists"
+    static let passwordsNoMatch = "Passwords do not match"
+    static let setEmailPass = "Email and password must be set"
+    static let checkEmailEntered = "Check the email you have entered"
+    static let userNotExist = "User do not exixt"
+    static let resetPassword = "An email is sent to your inbox to reset password"
+    static let emailEmpty = "Enter your email and click me"
+    
+}
+
+struct FbaseTexts {
+   
+    static let existingUser = "The email address is already in use by another account"
+    static let badEmailFormat = "The email address is badly formatted"
+    static let noUserExist = "There is no user record corresponding to this identifier"
+    
+    
+}
+
+struct UtilityTexts {
+     static let signIn = "Sign In"
+    static let signUp = "Sign Up"
+     static let email = "Email"
+     static let enterEmail = "Enter your email"
+     static let password = "Password"
+     static let enterPass = "Enter your password"
+    static let repeatPass = "Repeat password"
+    static let forgotPass = "Forgot password?"
+    static let noAccount = "Dont have an Account?"
+    static let error = "Error"
+    
+}

@@ -23,7 +23,6 @@ struct CartButtonView: View {
                     feedback.impactOccurred()
                     if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding{
                         
-                        
                         self.showingSize.toggle()
                       
                     }
@@ -44,8 +43,6 @@ struct CartButtonView: View {
                     .padding(8)
                     .background(Color.pink)
                     .clipShape(Capsule())
-                    
-                    
                     .sheet(isPresented: self.$showingLogin) {
                     
                         if Fuser.currentUser() != nil {
@@ -61,7 +58,7 @@ struct CartButtonView: View {
             .actionSheet(isPresented: $showingSize, content: showSize)
         }.alert(isPresented: $showingCartAlert, content: {
             
-            Alert(title:Text("Item added to Cart"))
+            Alert(title:Text(StaticText.addToCart))
         })
     }
     
@@ -71,10 +68,8 @@ struct CartButtonView: View {
         let LButton: ActionSheet.Button = .default(Text("L"), action: { self.addItemtoCart()  })
         let XLButton: ActionSheet.Button = .default(Text("XL"), action: {  self.addItemtoCart()   })
         let cancelButton : ActionSheet.Button = .cancel()
-        
-      
-        
-        return ActionSheet(title: Text("Choose size"),  buttons: [MButton,LButton,XLButton, cancelButton])
+
+        return ActionSheet(title: Text(StaticText.chooseSize),  buttons: [MButton,LButton,XLButton, cancelButton])
     }
    
     private func addItemtoCart() {

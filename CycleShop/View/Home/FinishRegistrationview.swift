@@ -52,11 +52,10 @@ struct FinishRegistrationview: View {
         updateCurrentUser(withValues: [kFIRSTNAME : name,kLASTNAME : surname , kFULLNAME: fullName, kFULLADRESS : address, kPHONENUBER: telephone, kONBOARD : true ]) { (error) in
             if error != nil {
                 
-                print("error updating user")
+               // print("error updating user")
                 return
             }
             
-           
             self.presentationMode.wrappedValue.dismiss()
             self.shop.userLoggedIn = true
         

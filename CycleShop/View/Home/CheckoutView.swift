@@ -35,9 +35,6 @@ struct CheckoutView: View {
                 }
              
             }
-            
-         
-            
             Section(header: Text("Total: SEK \(totalPrice)").font(.title3).fontWeight(.bold)) {
                 
            

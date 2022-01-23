@@ -13,7 +13,7 @@ struct RatingsView: View {
         HStack(alignment: .top, spacing: 3, content: {
             VStack(alignment: .leading, spacing:3, content: {
                 
-                Text("Ratings")
+                Text(StaticText.ratings)
                     .font(.footnote)
                     .fontWeight(.semibold)
                     .foregroundColor(.gray)
@@ -31,7 +31,7 @@ struct RatingsView: View {
             })
             Spacer()
             VStack(alignment: .trailing, spacing: 3, content: {
-                Text("Size")
+                Text(StaticText.size)
                     .font(.footnote)
                     .fontWeight(.semibold)
                     .foregroundColor(.gray)

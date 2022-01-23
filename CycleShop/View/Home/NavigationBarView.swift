@@ -37,12 +37,12 @@ struct NavigationBarView: View {
                 ZStack {
                     if self.cartListener.orderCart?.items.isEmpty == true {
                      
-                     Image(systemName: "cart")
+                        Image(systemName: ImageNames.cart)
                         .font(.title)
                         .foregroundColor(.black) } else {
                             
                             ZStack {
-                                Image(systemName: "cart")
+                                Image(systemName: ImageNames.cart)
                                     .font(.title)
                                 .foregroundColor(.black)
                                 

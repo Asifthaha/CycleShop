@@ -12,11 +12,9 @@ struct ProductItemView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 6, content: {
             ZStack {
-                
                 Image(product.image)
                     .resizable()
                     .scaledToFit()
-                
             }
             .cornerRadius(12)
             Text(product.name)
@@ -24,9 +22,7 @@ struct ProductItemView: View {
                 .fontWeight(.black)
             Text("SEK \(product.price)")
                 .fontWeight(.semibold)
-                .foregroundColor(.gray)
-            
-        })
+                .foregroundColor(.gray)        })
     }
 }
 

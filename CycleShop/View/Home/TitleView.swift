@@ -25,7 +25,7 @@ struct TitleView: View {
 
 struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleView(title: "Bikes")
+        TitleView(title: StaticText.bikes)
             .previewLayout(.sizeThatFits)
             .background(colorBackground)
     }

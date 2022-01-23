@@ -24,21 +24,20 @@ struct LoginView: View {
 @State var repeatPassword = ""
     
     enum Alerts{
-        case wrongEmailPass
-        case verifyEmail
-        case existingUser
-        case passwordsNoMatch
-        case setEmailPass
-        case checkEmailEntered
-        case userNotExist
-        case resetPassword
-        case emailEmpty
+        case wrongEmailPass(text: String)
+        case verifyEmail(text: String)
+        case existingUser(text: String)
+        case passwordsNoMatch(text: String)
+        case setEmailPass(text: String)
+        case checkEmailEntered(text: String)
+        case userNotExist(text: String)
+        case resetPassword(text: String)
+        case emailEmpty(text: String)
         case signUp
     }
     var body: some View {
         VStack{
-            
-        Text("Sign In")
+            Text(UtilityTexts.signIn)
                 .fontWeight(.heavy)
                 .font(.largeTitle)
                 .padding([.bottom, .top],20)
@@ -47,27 +46,27 @@ struct LoginView: View {
                 
         VStack(alignment: .leading){
                     
-        Text("Email")
+            Text(UtilityTexts.email)
                         .font(.headline)
                         .fontWeight(.light)
                         .foregroundColor(Color.init(.label))
                         .opacity(0.75)
-                TextField("Enter your email", text: $email)
+            TextField(UtilityTexts.enterEmail, text: $email)
                     Divider()
-                    Text("Password")
+            Text(UtilityTexts.password)
                         .font(.headline)
                         .fontWeight(.light)
                         .foregroundColor(Color.init(.label))
                         .opacity(0.75)
-                    SecureField("Enter your password", text: $password)
+            SecureField(UtilityTexts.enterPass, text: $password)
                     Divider()
                     if showingSignup {
-                        Text("Repeat password")
+                        Text(UtilityTexts.repeatPass)
                             .font(.headline)
                             .fontWeight(.light)
                             .foregroundColor(Color.init(.label))
                             .opacity(0.75)
-                        SecureField("Repeat password", text: $repeatPassword)
+                        SecureField(UtilityTexts.repeatPass, text: $repeatPassword)
                         Divider()
                     }
             
@@ -78,17 +77,15 @@ struct LoginView: View {
                     
                     Spacer()
                     Button(action: {self.resetPassword()}, label: {
-                        Text("Forgot password?")
+                        Text(UtilityTexts.forgotPass)
                             .foregroundColor(Color.gray.opacity(0.5))
                     })
                 }//End of Hstack
-                
-                
             }.padding(.horizontal, 6)
             Button(action: {
                 self.showingSignup ? self.signUp() : self.login()
             }, label: {
-                Text(showingSignup ? "Sign Up" : "Sign In")
+                Text(showingSignup ? UtilityTexts.signUp : UtilityTexts.signIn)
                     .foregroundColor(.white)
                     .frame(width: UIScreen.main.bounds.width - 120)
                     .padding()
@@ -108,7 +105,6 @@ struct LoginView: View {
             
             FinishRegistrationview()
         }
-      
 }
     
     private func login() {
@@ -118,28 +114,23 @@ struct LoginView: View {
             Fuser.loginUserWith(email: email, password: password) { error, isEmailVerified in
                 
                 if error != nil {
-                    alertType = .wrongEmailPass
+                    alertType = .wrongEmailPass(text:AlertTexts.wrongEmailPass )
                     self.showingAlert.toggle()
                     return
                 }
                 
                 else if !isEmailVerified {
-                    alertType = .verifyEmail
+                    alertType = .verifyEmail(text: AlertTexts.verifyEmail)
                     self.showingAlert.toggle()
                     return
                 }
                 if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding{
                     
-                    print("login successful)")
-                    
                     self.shop.userLoggedIn = true
-                    
                     self.presentationMode.wrappedValue.dismiss()
                     
                 } else {
-                    
                     self.showFinishReg.toggle()
-                    
                    
                 }
             }
@@ -150,32 +141,16 @@ struct LoginView: View {
     private func getAlert() -> Alert {
     
         switch alertType {
-        case .wrongEmailPass:
-            return Alert(title: Text("Incorrect Email or Password"))
-        case .verifyEmail:
-            return Alert(title: Text("Please verify your email and login"))
-        case .existingUser:
-            return Alert(title: Text("User Already exists"))
-        case .passwordsNoMatch:
-            return Alert(title: Text("Passwords do not match"))
-        case .setEmailPass:
-            return Alert(title: Text("Email and password must be set"))
-        case .checkEmailEntered:
-            return Alert(title: Text("Check the email you have entered"))
-        case .userNotExist:
-            return Alert(title:Text("User do not exixt"))
-        case .resetPassword:
-            return Alert(title:Text("An email is sent to your inbox to reset password"))
-        case .emailEmpty:
-            return Alert(title:Text("Enter your email and click me"))
+        case let .wrongEmailPass(text), let.verifyEmail(text), let .existingUser(text), let .passwordsNoMatch(text), let .setEmailPass(text), let .checkEmailEntered(text), let .userNotExist(text), let .resetPassword(text), let .emailEmpty(text):
+            return Alert(title: Text(text))
+
         case .signUp:
-            return Alert(title: Text("Please verify the link sent to your inbox and login"),  dismissButton: .default(Text("Ok"), action: {
+            return Alert(title: Text(AlertTexts.signUpAlert),  dismissButton: .default(Text("Ok"), action: {
                 self.presentationMode.wrappedValue.dismiss() }))
                   
         default:
-            return Alert(title:Text("Error"))
+            return Alert(title:Text(UtilityTexts.error))
         }
-        
     }
     
     private func signUp() {
@@ -185,34 +160,26 @@ struct LoginView: View {
                 
                 Fuser.registerUserwith(email: email, password: password) {(error) in
                     if error != nil {
-                        if error!.localizedDescription .contains("The email address is already in use by another account") {
-                           
-                            alertType = .existingUser
-                            
+                        if error!.localizedDescription.contains(FbaseTexts.existingUser) {
+                            alertType = .existingUser(text:AlertTexts.existingUser )
                             self.showingAlert.toggle()
                         }
-                       
-                        print("Error registering user", error!.localizedDescription)
                         return
                     }
                     
                     alertType = .signUp
                     self.showingAlert.toggle()
-                
                 }
                 
-                
             } else {
-                alertType = .passwordsNoMatch
-                
+                alertType = .passwordsNoMatch(text: AlertTexts.passwordsNoMatch)
                 self.showingAlert.toggle()
             }
             
         } else {
-            alertType = .setEmailPass
+            alertType = .setEmailPass(text: AlertTexts.setEmailPass)
             self.showingAlert.toggle()
         }
-   
     }
     
     private func resetPassword() {
@@ -220,39 +187,36 @@ struct LoginView: View {
             Fuser.resetPassword(email: email) { (error)in
                 if error != nil {
                     
-                    if error!.localizedDescription.contains("The email address is badly formatted") {
+                    if error!.localizedDescription.contains(FbaseTexts.badEmailFormat) {
                 
-                        alertType = .checkEmailEntered
+                        alertType = .checkEmailEntered(text: AlertTexts.checkEmailEntered)
                         self.showingAlert.toggle()
                         return
                        
-                    } else if error!.localizedDescription.contains("There is no user record corresponding to this identifier") {
+                    } else if error!.localizedDescription.contains(FbaseTexts.noUserExist) {
                       
-                        alertType = .userNotExist
+                        alertType = .userNotExist(text: AlertTexts.userNotExist)
                         self.showingAlert.toggle()
                         return
-                     
                     }
                    
                 }
                
-                alertType = .resetPassword
+                alertType = .resetPassword(text: AlertTexts.resetPassword)
                 self.showingAlert.toggle()
-              print("Please check your email")
+              
             }
            
         }else
         {
-            alertType = .emailEmpty
+            alertType = .emailEmpty(text: AlertTexts.emailEmpty)
             self.showingAlert.toggle()
-            print("email is empty")
+           
         }
-    
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
-    
     
     static var previews: some View {
         LoginView()
@@ -266,16 +230,15 @@ struct SignUpView : View {
     var body: some View {
         
         VStack{
-            
             Spacer()
             HStack(spacing: 8){
-           Text("Dont have an Account?")
+                Text(UtilityTexts.noAccount)
                     .foregroundColor(Color.gray.opacity(0.5))
                 Button(action: {
                     self.showingSignup.toggle()
                 }, label: {
                     
-                    Text("Sign Up")
+                    Text(UtilityTexts.signUp)
                     
                 }).foregroundColor(.blue)
                 
