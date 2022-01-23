@@ -10,7 +10,8 @@ import SwiftUI
 struct NavigationBarView: View {
     @State private var showingCart = false
     @State private var isAnimated : Bool = false
-    
+    @ObservedObject var cartListener = CartListener()
+  
     var body: some View {
         HStack {
             Button(action: {}, label: {
@@ -34,24 +35,37 @@ struct NavigationBarView: View {
                 self.showingCart.toggle()
             }, label: {
                 ZStack {
-                    Image(systemName: "cart")
+                    if self.cartListener.orderCart?.items.isEmpty == true {
+                     
+                     Image(systemName: "cart")
                         .font(.title)
-                    .foregroundColor(.black)
-                    
-                    Circle()
-                        .fill(Color.red)
-                        .frame(width: 14, height: 14, alignment: .center)
-                        .offset(x: 13, y: -10)
+                        .foregroundColor(.black) } else {
+                            
+                            ZStack {
+                                Image(systemName: "cart")
+                                    .font(.title)
+                                .foregroundColor(.black)
+                                
+                                Circle()
+                                    .fill(Color.red)
+                                    .frame(width: 14, height: 14, alignment: .center)
+                                    .offset(x: 13, y: -10)
+                            }
+                        }
                 }
             }).sheet(isPresented: $showingCart){
                 
-               if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding {
+                if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding {
                     
-                    
-                    CartView()
+                  CartView()
                 } else if Fuser.currentUser() != nil {
+                    FinishRegistrationview()
+                } else {
+                    LoginView()
                     
-                    LoginView(userloggedIn: .constant(false)) }
+                }
+                
+               
             }
         }
     }

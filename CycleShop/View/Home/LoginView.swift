@@ -9,18 +9,32 @@ import SwiftUI
 
 
 struct LoginView: View {
-
-@Binding var userloggedIn : Bool
+    
+@State var alertType : Alerts? = nil
 @State var showingSignup = false
 @State var showFinishReg = false
 @State var showingAlert = false
 
-@State private var errorTitle = ""
+
 @Environment(\.presentationMode) var presentationMode
+@EnvironmentObject var shop: Shop
     
 @State var email = ""
 @State var password = ""
 @State var repeatPassword = ""
+    
+    enum Alerts{
+        case wrongEmailPass
+        case verifyEmail
+        case existingUser
+        case passwordsNoMatch
+        case setEmailPass
+        case checkEmailEntered
+        case userNotExist
+        case resetPassword
+        case emailEmpty
+        case signUp
+    }
     var body: some View {
         VStack{
             
@@ -69,6 +83,7 @@ struct LoginView: View {
                     })
                 }//End of Hstack
                 
+                
             }.padding(.horizontal, 6)
             Button(action: {
                 self.showingSignup ? self.signUp() : self.login()
@@ -84,18 +99,16 @@ struct LoginView: View {
             
             SignUpView(showingSignup: $showingSignup)
     }//End of Vstack
-        .alert(isPresented: $showingAlert) {
+        .alert(isPresented: $showingAlert, content:  {
             
-            Alert(title: Text(self.errorTitle), dismissButton: .default(Text("OK")))
-            
-        }
+            getAlert()
+        })
         
         .sheet(isPresented: $showFinishReg) {
             
             FinishRegistrationview()
         }
-        
-       
+      
 }
     
     private func login() {
@@ -105,17 +118,13 @@ struct LoginView: View {
             Fuser.loginUserWith(email: email, password: password) { error, isEmailVerified in
                 
                 if error != nil {
-                    
-                    self.errorTitle = "Incorrect email or password"
-                    
+                    alertType = .wrongEmailPass
                     self.showingAlert.toggle()
                     return
                 }
                 
                 else if !isEmailVerified {
-                    
-                    self.errorTitle = "Please verify your email and login"
-                    
+                    alertType = .verifyEmail
                     self.showingAlert.toggle()
                     return
                 }
@@ -123,16 +132,48 @@ struct LoginView: View {
                     
                     print("login successful)")
                     
-                    self.userloggedIn = true
+                    self.shop.userLoggedIn = true
                     
                     self.presentationMode.wrappedValue.dismiss()
                     
                 } else {
                     
                     self.showFinishReg.toggle()
+                    
                    
                 }
             }
+        }
+        
+    }
+    
+    private func getAlert() -> Alert {
+    
+        switch alertType {
+        case .wrongEmailPass:
+            return Alert(title: Text("Incorrect Email or Password"))
+        case .verifyEmail:
+            return Alert(title: Text("Please verify your email and login"))
+        case .existingUser:
+            return Alert(title: Text("User Already exists"))
+        case .passwordsNoMatch:
+            return Alert(title: Text("Passwords do not match"))
+        case .setEmailPass:
+            return Alert(title: Text("Email and password must be set"))
+        case .checkEmailEntered:
+            return Alert(title: Text("Check the email you have entered"))
+        case .userNotExist:
+            return Alert(title:Text("User do not exixt"))
+        case .resetPassword:
+            return Alert(title:Text("An email is sent to your inbox to reset password"))
+        case .emailEmpty:
+            return Alert(title:Text("Enter your email and click me"))
+        case .signUp:
+            return Alert(title: Text("Please verify the link sent to your inbox and login"),  dismissButton: .default(Text("Ok"), action: {
+                self.presentationMode.wrappedValue.dismiss() }))
+                  
+        default:
+            return Alert(title:Text("Error"))
         }
         
     }
@@ -145,8 +186,8 @@ struct LoginView: View {
                 Fuser.registerUserwith(email: email, password: password) {(error) in
                     if error != nil {
                         if error!.localizedDescription .contains("The email address is already in use by another account") {
-                            
-                            self.errorTitle = "User already Exists"
+                           
+                            alertType = .existingUser
                             
                             self.showingAlert.toggle()
                         }
@@ -155,21 +196,20 @@ struct LoginView: View {
                         return
                     }
                     
-                    self.presentationMode.wrappedValue.dismiss()
-                 
+                    alertType = .signUp
+                    self.showingAlert.toggle()
+                
                 }
                 
                 
             } else {
-                
-                self.errorTitle = "Passwords do not match"
+                alertType = .passwordsNoMatch
                 
                 self.showingAlert.toggle()
             }
             
         } else {
-            
-            self.errorTitle = "Email and Password must be set"
+            alertType = .setEmailPass
             self.showingAlert.toggle()
         }
    
@@ -181,28 +221,29 @@ struct LoginView: View {
                 if error != nil {
                     
                     if error!.localizedDescription.contains("The email address is badly formatted") {
-                        
-                        self.errorTitle = "Check the email you have entered"
+                
+                        alertType = .checkEmailEntered
                         self.showingAlert.toggle()
                         return
                        
                     } else if error!.localizedDescription.contains("There is no user record corresponding to this identifier") {
-                        
-                        self.errorTitle = "User do not exist"
+                      
+                        alertType = .userNotExist
                         self.showingAlert.toggle()
                         return
                      
                     }
                    
                 }
-                self.errorTitle = "An email is sent to your inbox to reset password"
+               
+                alertType = .resetPassword
                 self.showingAlert.toggle()
               print("Please check your email")
             }
            
         }else
         {
-            self.errorTitle = "Enter your email and click me"
+            alertType = .emailEmpty
             self.showingAlert.toggle()
             print("email is empty")
         }
@@ -211,8 +252,10 @@ struct LoginView: View {
 }
 
 struct LoginView_Previews: PreviewProvider {
+    
+    
     static var previews: some View {
-        LoginView(userloggedIn: .constant(false))
+        LoginView()
     }
 }
 

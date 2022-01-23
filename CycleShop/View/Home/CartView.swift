@@ -28,7 +28,9 @@ struct CartView: View {
                 
                 Section{
                     
-                    Text("Place Order")
+                    NavigationLink(destination: CheckoutView()) {
+                    
+                        Text("Place Order") }
                 }.disabled(self.cartListener.orderCart?.items.isEmpty ?? true)
             }//End of List
             .navigationBarTitle("Order")

@@ -46,8 +46,7 @@ public let kPRODUCTIDS = "productIds"
 public let kCUSTOMERID = "customerId"
 public let kAMOUNT = "amount"
 public let kOWNERID = "OwnerId"
-public let kCUSTOMERNAME = "customerName"
-public let kISCOMPLETED = "isCompleted"
+
 
 
 //FUser

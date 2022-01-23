@@ -11,6 +11,8 @@ struct NavigationDetailView: View {
     
     
     @State private var showingCart = false
+    @ObservedObject var cartListener = CartListener()
+    @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var shop : Shop
     
@@ -31,25 +33,45 @@ struct NavigationDetailView: View {
             Spacer()
             
            Button(action: {
-               self.showingCart.toggle()
+               self.presentationMode.wrappedValue.dismiss()
+                  self.showingCart.toggle()
            }
               
            , label: {
+               
+               if self.cartListener.orderCart?.items.isEmpty == true {
                 
                 Image(systemName: "cart")
                    .font(.title)
-                .foregroundColor(.pink)
-           }).sheet(isPresented: $showingCart){
+                   .foregroundColor(.pink) } else {
+                       
+                       ZStack {
+                           Image(systemName: "cart")
+                               .font(.title)
+                           .foregroundColor(.pink)
+                           
+                           Circle()
+                               .fill(Color.red)
+                               .frame(width: 14, height: 14, alignment: .center)
+                               .offset(x: 13, y: -10)
+                       }
+                   }
+           })
+             
+           }.sheet(isPresented: $showingCart){
                
                if Fuser.currentUser() != nil && Fuser.currentUser()!.onBoarding {
                  
                    CartView()
                } else if Fuser.currentUser() != nil {
                    
-                   LoginView(userloggedIn: .constant(false))
+                   
+                   FinishRegistrationview()
+                   
+               } else {
+                   
+                   LoginView()
                }
-             
-           }
          
         }
     }

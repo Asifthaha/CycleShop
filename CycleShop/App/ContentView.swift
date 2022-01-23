@@ -9,21 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var productListener = ProductListener ()
-    
-    @State private var userloggedIn = false
-    @State var logoutAlert = false
-    
-    
+   
+    @State private var logoutAlert = false
+   
     @State var showingLoginView = false
-
+  
     
     @EnvironmentObject var shop: Shop
    
-    
-    
     var body: some View {
-       
-       
         ZStack {
             if shop.showingProduct == false && shop.selectedProduct == nil {
                 VStack (spacing : 0) {
@@ -60,11 +54,12 @@ struct ContentView: View {
 
                             })
                             
-                            if  userloggedIn == false {
+                            if  shop.userLoggedIn == false  {
 
                                 Button(action:
 
                                        { self.showingLoginView.toggle()
+                                 
                                }
 
                                , label: {
@@ -76,16 +71,12 @@ struct ContentView: View {
 
                             }) .sheet(isPresented: $showingLoginView){
 
-                                LoginView(userloggedIn:$userloggedIn)
-                            } } else  {
+                                LoginView()
+                            } } else   {
 
                                 Button(action: {
-                                Fuser.logOutCurrentUser { (error) in
-                                    if error == nil {
-                                        self.logoutAlert.toggle()
-                                        self.userloggedIn.toggle()
-                                    }
-                                }
+                                    self.logoutAlert.toggle()
+                                
                             }, label: {
                                 Text("Logout")
                                     .font(.footnote)
@@ -93,11 +84,8 @@ struct ContentView: View {
                                 .foregroundColor(.gray)
                                 .padding(.top, 1)
 
-
                             })
-                            
-
-
+                           
                             }
                            
                             FooterView()
@@ -112,12 +100,26 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea(.all,edges: .top)
-        .alert(isPresented: $logoutAlert) {
-            
-            Alert(title: Text("Logged out"))
-            
-        }
-       
+        .alert(isPresented: $logoutAlert, content:  { getAlert() })
+    
+    }
+    
+    func getAlert() -> Alert {
+        
+        return Alert(
+            title: Text("Do you want to logout?"),
+            primaryButton:.destructive(Text("Logout"), action: {Fuser.logOutCurrentUser { (error) in
+                if error == nil {
+                    
+                    
+                    shop.userLoggedIn = false
+                }
+            }
+                
+            }),
+            secondaryButton: .cancel()
+          
+       )
     }
 }
 

@@ -10,6 +10,8 @@ import SwiftUI
 struct ProductDetailView: View {
     @EnvironmentObject var shop : Shop
     
+   
+    
     var body: some View {
        
         VStack(alignment: .leading, spacing:5,  content: {
@@ -33,7 +35,7 @@ struct ProductDetailView: View {
                         .font(.system(.body, design: .rounded))
                         .multilineTextAlignment(.leading)
                 })
-                CartFavouriteView()
+                CartButtonView()
                     .padding(.vertical, 10)
                 Spacer()
             })
@@ -47,6 +49,8 @@ struct ProductDetailView: View {
             .background(
                 (Color(red: 218/255, green: 221/255, blue: 252/255)).ignoresSafeArea(.all, edges: .all)
             )
+        
+       
     }
 }
 

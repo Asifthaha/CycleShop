@@ -10,7 +10,7 @@ import SwiftUI
 struct FinishRegistrationview: View {
     
     @State var showingContentView = false
-    
+    @EnvironmentObject var shop : Shop
     @Environment(\.presentationMode) var presentationMode
     @State var name = ""
     @State var surname = ""
@@ -37,10 +37,7 @@ struct FinishRegistrationview: View {
                 })
             } .disabled(!self.fieldsCompleted())
         }//End of form
-       // .sheet(isPresented: $showingContentView){
-            
-            //ContentView()
-        //}
+       
     }
     
     private func fieldsCompleted() -> Bool {
@@ -59,8 +56,9 @@ struct FinishRegistrationview: View {
                 return
             }
             
-           // self.showingContentView.toggle()
+           
             self.presentationMode.wrappedValue.dismiss()
+            self.shop.userLoggedIn = true
         
         }
     }
