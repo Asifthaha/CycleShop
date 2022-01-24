@@ -65,8 +65,6 @@ struct CheckoutView: View {
              }))
         }
     }
-    
-    
     private func createOrder() {
         
         let order = Order()
@@ -82,7 +80,6 @@ struct CheckoutView: View {
         self.cartListener.orderCart.emptyCart()
     }
 }
-
 struct CheckoutView_Previews: PreviewProvider {
     static var previews: some View {
         CheckoutView()

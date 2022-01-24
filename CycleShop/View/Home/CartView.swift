@@ -30,10 +30,10 @@ struct CartView: View {
                     
                     NavigationLink(destination: CheckoutView()) {
                     
-                        Text("Place Order") }
+                        Text(UtilityTexts.placeOrder) }
                 }.disabled(self.cartListener.orderCart?.items.isEmpty ?? true)
             }//End of List
-            .navigationBarTitle("Order")
+            .navigationBarTitle(UtilityTexts.order)
             .listStyle(GroupedListStyle())
         }//End of Navigation
     }

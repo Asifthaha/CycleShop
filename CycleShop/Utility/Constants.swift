@@ -116,5 +116,16 @@ struct UtilityTexts {
     static let forgotPass = "Forgot password?"
     static let noAccount = "Dont have an Account?"
     static let error = "Error"
+    static let finishReg = "Finish Registration"
+    static let placeOrder = "Place Order"
+    static let order = "Order"
     
+}
+
+struct UserTexts {
+    
+    static let name = "Name"
+    static let surname = "Surname"
+    static let phoneNum = "Telephone"
+    static let address = "Address"
 }

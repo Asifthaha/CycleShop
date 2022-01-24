@@ -19,21 +19,21 @@ struct FinishRegistrationview: View {
     var body: some View {
         Form{
             Section(){
-                Text("Finish Registration")
+                Text(UtilityTexts.finishReg)
                     .fontWeight(.bold)
                     .font(.title)
                     
                     .padding([.top, .bottom], 20)
-                TextField("Name", text: $name)
-                TextField("Surname", text: $surname)
-                TextField("Telephone", text: $telephone)
-                TextField("Address", text: $address)
+                TextField(UserTexts.name, text: $name)
+                TextField(UserTexts.surname, text: $surname)
+                TextField(UserTexts.phoneNum, text: $telephone)
+                TextField(UserTexts.address, text: $address)
               
             }//End of section
             
             Section(){
                 Button(action: {self.finishRegistration()}, label: {
-                    Text("Finish Registration")
+                    Text(UtilityTexts.finishReg)
                 })
             } .disabled(!self.fieldsCompleted())
         }//End of form
@@ -46,23 +46,17 @@ struct FinishRegistrationview: View {
     }
     
     private func finishRegistration() {
-        
         let fullName = name + " " + surname
-        
         updateCurrentUser(withValues: [kFIRSTNAME : name,kLASTNAME : surname , kFULLNAME: fullName, kFULLADRESS : address, kPHONENUBER: telephone, kONBOARD : true ]) { (error) in
             if error != nil {
-                
                // print("error updating user")
                 return
             }
-            
             self.presentationMode.wrappedValue.dismiss()
             self.shop.userLoggedIn = true
-        
         }
     }
 }
-
 struct FinishRegistration_Previews: PreviewProvider {
     static var previews: some View {
         FinishRegistrationview()
